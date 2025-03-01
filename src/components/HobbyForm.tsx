@@ -7,9 +7,10 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { X, Search, Loader2 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface HobbyFormProps {
-  onSubmit: (hobbies: string[], keywords: string[]) => void;
+  onSubmit: (hobbies: string[], keywords: string[], branch?: string, purpose?: string) => void;
 }
 
 // Common hobbies for suggestions
@@ -24,6 +25,8 @@ const HobbyForm = ({ onSubmit }: HobbyFormProps) => {
   const [keywords, setKeywords] = useState<string[]>([]);
   const [currentHobby, setCurrentHobby] = useState('');
   const [currentKeyword, setCurrentKeyword] = useState('');
+  const [branch, setBranch] = useState<string>('AIML');
+  const [purpose, setPurpose] = useState<string>('Study');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAddHobby = () => {
@@ -54,7 +57,7 @@ const HobbyForm = ({ onSubmit }: HobbyFormProps) => {
       setIsLoading(true);
       // Simulate API call
       setTimeout(() => {
-        onSubmit(hobbies, keywords);
+        onSubmit(hobbies, keywords, branch, purpose);
         setIsLoading(false);
       }, 1500);
     }
@@ -86,6 +89,50 @@ const HobbyForm = ({ onSubmit }: HobbyFormProps) => {
       className="w-full max-w-md mx-auto"
     >
       <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div className="space-y-4">
+          <div className="space-y-3">
+            <Label className="text-md font-medium">Branch</Label>
+            <RadioGroup 
+              value={branch} 
+              onValueChange={setBranch}
+              className="flex space-x-4"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="AIML" id="AIML" />
+                <Label htmlFor="AIML" className="cursor-pointer">AIML</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="CSDS" id="CSDS" />
+                <Label htmlFor="CSDS" className="cursor-pointer">CSDS</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="CSBS" id="CSBS" />
+                <Label htmlFor="CSBS" className="cursor-pointer">CSBS</Label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          <div className="space-y-3">
+            <Label className="text-md font-medium">For</Label>
+            <RadioGroup 
+              value={purpose} 
+              onValueChange={setPurpose}
+              className="flex space-x-4"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Study" id="Study" />
+                <Label htmlFor="Study" className="cursor-pointer">Study</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="Fun" id="Fun" />
+                <Label htmlFor="Fun" className="cursor-pointer">Fun</Label>
+              </div>
+            </RadioGroup>
+          </div>
+        </div>
+
+        <Separator />
+
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <Label className="text-md font-medium">Your Top 3 Hobbies</Label>

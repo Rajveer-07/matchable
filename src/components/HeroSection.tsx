@@ -71,7 +71,7 @@ const HeroSection = () => {
             animate="visible"
             className="font-playfair text-5xl md:text-7xl font-bold mb-4 tracking-tight"
           >
-            Cross paths.
+            Make Friends.
             <motion.span 
               variants={textVariants}
               initial="hidden"
@@ -79,7 +79,7 @@ const HeroSection = () => {
               transition={{ delay: 0.3 }}
               className="block mt-2 font-playfair text-4xl md:text-6xl"
             >
-              Date local.
+              Connect locally.
             </motion.span>
           </motion.h1>
           
@@ -91,8 +91,8 @@ const HeroSection = () => {
             transition={{ delay: 0.4 }}
             className="text-gray-600 text-lg md:text-xl mt-6 max-w-2xl mx-auto"
           >
-            Connect with people who share your interests and passions.
-            Find your perfect match based on your hobbies, daily routines, and personality.
+            Connect with friendly people who share your interests and passions.
+            Find study buddies, activity partners, and new friends based on common hobbies.
           </motion.p>
         </motion.div>
         
@@ -105,7 +105,7 @@ const HeroSection = () => {
           <Button asChild size="lg" className="rounded-full px-8 py-6 bg-black hover:bg-black/90 text-md">
             <Link to="/explore">
               <Search className="mr-2 h-5 w-5" />
-              Explore Matches
+              Explore Friends
             </Link>
           </Button>
           

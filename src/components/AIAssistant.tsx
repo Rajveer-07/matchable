@@ -265,14 +265,7 @@ const AIAssistant = () => {
                   </CardTitle>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    onClick={() => setShowSettings(!showSettings)}
-                    className="h-8 w-8 rounded-full hover:bg-gray-200 transition-colors"
-                  >
-                    <Settings className="h-4 w-4 text-gray-600" />
-                  </Button>
+                  
                   <Button 
                     variant="ghost" 
                     size="icon" 

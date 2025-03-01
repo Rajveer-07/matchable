@@ -19,7 +19,7 @@ const Submit = () => {
             transition={{ duration: 0.6 }}
             className="font-playfair text-4xl md:text-5xl font-bold mb-4"
           >
-            Join Our Community
+            Join Our Friendly Community
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -27,10 +27,10 @@ const Submit = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-gray-600 max-w-2xl mx-auto"
           >
-            Share your profile and find meaningful connections with people who share your interests.
+            Share your profile and discover wonderful people who share your interests. Connect for study buddies, fun activities, or both!
           </motion.p>
         </div>
-        
+
         <SubmitForm />
       </div>
     </motion.div>

@@ -18,15 +18,15 @@ const featuredProfiles = [
     bio: 'Adventure seeker and food enthusiast. Always looking for the next mountain to climb.'
   },
   {
-    name: 'James Wilson',
+    name: 'Prashant Parmar',
     image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&auto=format',
-    hobbies: ['Cycling', 'Reading', 'Jazz'],
+    hobbies: ['Gaming', 'Reading', 'Travel'],
     bio: 'Bookworm by day, jazz enthusiast by night. Let\'s discuss novels over coffee.'
   },
   {
-    name: 'Elena Rodriguez',
-    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&auto=format',
-    hobbies: ['Painting', 'Yoga', 'Travel'],
+    name: 'Rajveer Dangi',
+    image: 'https://i.ibb.co/GQW23d5b/face-swap.png',
+    hobbies: ['Basketball', 'Reading', 'Travel'],
     bio: 'Creative soul with a passion for colors and movement. Always planning my next trip.'
   },
   {
