@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import HobbyForm from '@/components/HobbyForm';
 import ProfileCard from '@/components/ProfileCard';
-import { Loader2, Brain, Lightbulb, BadgeCheck, Calendar } from 'lucide-react';
+import { Loader2, Brain, Lightbulb, BadgeCheck, Calendar, Bot } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -12,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getAllProfiles, UserProfile } from '@/services/databaseService';
 import { analyzeCompatibility, AIAnalysisResult, getPersonalizedInsights } from '@/services/aiService';
 import { useToast } from '@/hooks/use-toast';
+import AIAssistant from '@/components/AIAssistant';
 
 const Explore = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -112,6 +112,9 @@ const Explore = () => {
       exit={{ opacity: 0 }}
       className="min-h-screen pt-24 pb-12"
     >
+      {/* Add AI Assistant */}
+      <AIAssistant />
+      
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <motion.h1
