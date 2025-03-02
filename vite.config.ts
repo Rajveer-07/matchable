@@ -18,5 +18,5 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/", // Set for root deployment
+  base: "/matchable/", // Set for root deployment
 }));
