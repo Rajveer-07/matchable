@@ -11,41 +11,41 @@ import { ArrowRight, Heart, Search } from 'lucide-react';
 // Sample profiles data
 const featuredProfiles = [
   {
-   name: 'Pranjal',
-   image: 'https://i.postimg.cc/DzbDp1QX/temp-Imagex-WHQ3-V.avif',
-   hobbies: ['Poetry', 'Travel', 'Riding'],
-   bio: 'Businessman and a bike enthusiast , love poetry and tea.',
-   branch: 'CSDS' as const,
-   purpose: 'Both' as const,
-   age: 21
- },
- {
-   name: 'Prashant Parmar',
-   image: 'https://i.postimg.cc/QxLfFRMv/temp-Imagee5-Fhxb.avif',
-   hobbies: ['Gaming', 'Football', 'Travel'],
-   bio: 'Sports by day, Gym enthusiast by night. Let\'s discuss Animes over coffee.',
-   branch: 'CSDS' as const,
-   purpose: 'Fun' as const,
-   age: 20
- },
- {
-   name: 'Rajveer Dangi',
-   image: 'https://i.postimg.cc/mDWmkqvd/face-swap.png',
-   hobbies: ['Basketball', 'Reading', 'Travel'],
-   bio: 'Creative soul with a passion for colors and movement. Always planning my next trip.',
-   branch: 'CSBS' as const,
-   purpose: 'Both' as const,
-   age: 20
- },
- {
-   name: 'Michael Chen',
-   image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format',
-   hobbies: ['Gaming', 'Cooking', 'Movies'],
-   bio: 'Gamer and foodie. I can make a mean pasta while discussing film theory.',
-   branch: 'AIML' as const,
-   purpose: 'Fun' as const,
-   age: 21
- }
+    name: 'Alexis Morgan',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format',
+    hobbies: ['Photography', 'Hiking', 'Cooking'],
+    bio: 'Adventure seeker and food enthusiast. Always looking for the next mountain to climb.',
+    branch: 'AIML' as const,
+    purpose: 'Study' as const,
+    age: 21
+  },
+  {
+    name: 'Prashant Parmar',
+    image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&auto=format',
+    hobbies: ['Gaming', 'Football', 'Travel'],
+    bio: 'Bookworm by day, jazz enthusiast by night. Let\'s discuss novels over coffee.',
+    branch: 'CSDS' as const,
+    purpose: 'Fun' as const,
+    age: 20
+  },
+  {
+    name: 'Rajveer Dangi',
+    image: 'https://i.ibb.co/GQW23d5b/face-swap.png',
+    hobbies: ['Basketball', 'Reading', 'Travel'],
+    bio: 'Creative soul with a passion for colors and movement. Always planning my next trip.',
+    branch: 'CSBS' as const,
+    purpose: 'Both' as const,
+    age: 20
+  },
+  {
+    name: 'Michael Chen',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format',
+    hobbies: ['Gaming', 'Cooking', 'Movies'],
+    bio: 'Gamer and foodie. I can make a mean pasta while discussing film theory.',
+    branch: 'AIML' as const,
+    purpose: 'Fun' as const,
+    age: 21
+  }
 ];
 
 const Index = () => {
