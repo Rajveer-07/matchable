@@ -6,6 +6,7 @@ const About = () => {
   const controls = useAnimation();
   const [showContactForm, setShowContactForm] = useState(false);
   
+  
   // Refs for scroll animations
   const heroRef = useRef<HTMLDivElement>(null);
   const missionRef = useRef<HTMLDivElement>(null);
@@ -24,6 +25,7 @@ const About = () => {
   const faqInView = useInView(faqRef, { once: true, amount: 0.3 });
   
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (missionInView) {
       controls.start('visible');
     }
@@ -116,7 +118,7 @@ const About = () => {
       description: "Matchabel was founded with a vision to revolutionize how people connect online, focusing on authenticity and meaningful interactions."
     },
     {
-      year: "2024",
+      year: "2025",
       title: "Website Launch",
       description: "Our platform officially launched, combining innovative technology with user-centered design to create an intuitive experience."
     },
@@ -154,7 +156,7 @@ const About = () => {
             <motion.p variants={itemVariants} className="text-gray-600 max-w-3xl mx-auto text-lg mb-10">
               Discover how Matchabel is redefining connections in the digital age. 
               We're not just another platform – we're a community built on trust, 
-              innovation, and the belief that meaningful relationships enhance lives.
+              innovation, and the belief that meaningful friendships enhance lives.
             </motion.p>
             <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
               <motion.button 

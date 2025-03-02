@@ -17,16 +17,16 @@ const featuredProfiles = [
     bio: 'Adventure seeker and food enthusiast. Always looking for the next mountain to climb.',
     branch: 'AIML' as const,
     purpose: 'Study' as const,
-    age: 24
+    age: 21
   },
   {
     name: 'Prashant Parmar',
     image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&auto=format',
-    hobbies: ['Gaming', 'Reading', 'Travel'],
+    hobbies: ['Gaming', 'Football', 'Travel'],
     bio: 'Bookworm by day, jazz enthusiast by night. Let\'s discuss novels over coffee.',
     branch: 'CSDS' as const,
     purpose: 'Fun' as const,
-    age: 22
+    age: 20
   },
   {
     name: 'Rajveer Dangi',
@@ -35,7 +35,7 @@ const featuredProfiles = [
     bio: 'Creative soul with a passion for colors and movement. Always planning my next trip.',
     branch: 'CSBS' as const,
     purpose: 'Both' as const,
-    age: 23
+    age: 20
   },
   {
     name: 'Michael Chen',
@@ -44,7 +44,7 @@ const featuredProfiles = [
     bio: 'Gamer and foodie. I can make a mean pasta while discussing film theory.',
     branch: 'AIML' as const,
     purpose: 'Fun' as const,
-    age: 25
+    age: 21
   }
 ];
 
