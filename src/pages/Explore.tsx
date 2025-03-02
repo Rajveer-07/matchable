@@ -26,8 +26,9 @@ const Explore = () => {
   } | null>(null);
   const { toast } = useToast();
 
-  // Fetch all profiles on component mount
   useEffect(() => {
+    window.scrollTo(0, 0);
+    
     const fetchProfiles = async () => {
       setIsLoading(true);
       try {
@@ -61,7 +62,6 @@ const Explore = () => {
     setSearchCriteria({ hobbies, keywords });
     
     try {
-      // First perform basic filtering
       const filteredProfiles = profiles.filter(profile => {
         const hasMatchingHobby = profile.hobbies.some(hobby => 
           hobbies.some(userHobby => 
@@ -73,10 +73,8 @@ const Explore = () => {
         return hasMatchingHobby;
       });
       
-      // Then use AI service for detailed analysis
       const analysis = await analyzeCompatibility(hobbies, keywords, profiles);
       
-      // Match profiles with analysis results
       const profilesWithScores = analysis.matches
         .filter(match => match.score > 0)
         .map(match => {
@@ -112,7 +110,6 @@ const Explore = () => {
       exit={{ opacity: 0 }}
       className="min-h-screen pt-24 pb-12"
     >
-      {/* Add AI Assistant */}
       <AIAssistant />
       
       <div className="max-w-7xl mx-auto px-4">
@@ -235,6 +232,10 @@ const Explore = () => {
                                 index={index}
                                 matchScore={matchDetails?.score || 0}
                                 matchReason={matchDetails?.matchReason || ''}
+                                showBranchPropose={false}
+                                dob={profile.dob}
+                                branch={profile.branch as 'AIML' | 'CSDS' | 'CSBS'} 
+                                purpose={profile.purpose as 'Study' | 'Fun' | 'Both'}
                               />
                             </motion.div>
                           );

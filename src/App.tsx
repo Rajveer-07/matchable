@@ -29,8 +29,10 @@ export default () => (
                 <Route path="/submit" element={<Submit />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/terms" element={<Terms />} />
+                {/* Redirect legacy routes to home */}
                 <Route path="/matchailor-friend-connect" element={<Navigate to="/" replace />} />
                 <Route path="/matchailor-friend-connect/*" element={<Navigate to="/" replace />} />
+                {/* Catch-all route for 404 page */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </AnimatePresence>

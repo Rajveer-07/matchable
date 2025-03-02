@@ -6,9 +6,10 @@ export interface UserProfile {
   branch?: 'AIML' | 'CSDS' | 'CSBS';
   purpose?: 'Study' | 'Fun' | 'Both';
   hobbies: string[];
-  routine: string;
+  routine?: string;
   imageUrl: string;
-  createdAt: Date;
+  dob?: string;
+  createdAt?: Date;
 }
 
 // Sample profiles for development

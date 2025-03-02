@@ -18,6 +18,7 @@ import SuccessMessage from './submit/SuccessMessage';
 const SubmitForm = () => {
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');
+  const [dob, setDob] = useState('');
   const [branch, setBranch] = useState<'AIML' | 'CSDS' | 'CSBS'>('AIML');
   const [purpose, setPurpose] = useState<'Study' | 'Fun' | 'Both'>('Study');
   const [hobbies, setHobbies] = useState('');
@@ -32,7 +33,7 @@ const SubmitForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!name || !bio || !hobbies || !routine || !previewUrl) {
+    if (!name || !bio || !dob || !hobbies || !routine || !previewUrl) {
       toast({
         title: "Missing information",
         description: "Please fill out all fields and upload an image",
@@ -70,6 +71,7 @@ const SubmitForm = () => {
       const newProfile = await createProfile({
         name,
         bio,
+        dob,
         branch,
         purpose,
         hobbies: hobbiesArray,
@@ -134,6 +136,8 @@ const SubmitForm = () => {
           setName={setName}
           bio={bio}
           setBio={setBio}
+          dob={dob}
+          setDob={setDob}
         />
         
         <Separator />
@@ -165,7 +169,7 @@ const SubmitForm = () => {
         
         <Button 
           type="submit" 
-          className="w-full" 
+          className="w-full font-medium" 
           size="lg" 
           disabled={isSubmitting || isUploading}
         >

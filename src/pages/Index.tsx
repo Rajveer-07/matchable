@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -15,25 +14,37 @@ const featuredProfiles = [
     name: 'Alexis Morgan',
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format',
     hobbies: ['Photography', 'Hiking', 'Cooking'],
-    bio: 'Adventure seeker and food enthusiast. Always looking for the next mountain to climb.'
+    bio: 'Adventure seeker and food enthusiast. Always looking for the next mountain to climb.',
+    branch: 'AIML' as const,
+    purpose: 'Study' as const,
+    age: 24
   },
   {
     name: 'Prashant Parmar',
     image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&auto=format',
     hobbies: ['Gaming', 'Reading', 'Travel'],
-    bio: 'Bookworm by day, jazz enthusiast by night. Let\'s discuss novels over coffee.'
+    bio: 'Bookworm by day, jazz enthusiast by night. Let\'s discuss novels over coffee.',
+    branch: 'CSDS' as const,
+    purpose: 'Fun' as const,
+    age: 22
   },
   {
     name: 'Rajveer Dangi',
     image: 'https://i.ibb.co/GQW23d5b/face-swap.png',
     hobbies: ['Basketball', 'Reading', 'Travel'],
-    bio: 'Creative soul with a passion for colors and movement. Always planning my next trip.'
+    bio: 'Creative soul with a passion for colors and movement. Always planning my next trip.',
+    branch: 'CSBS' as const,
+    purpose: 'Both' as const,
+    age: 23
   },
   {
     name: 'Michael Chen',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format',
     hobbies: ['Gaming', 'Cooking', 'Movies'],
-    bio: 'Gamer and foodie. I can make a mean pasta while discussing film theory.'
+    bio: 'Gamer and foodie. I can make a mean pasta while discussing film theory.',
+    branch: 'AIML' as const,
+    purpose: 'Fun' as const,
+    age: 25
   }
 ];
 
@@ -93,6 +104,10 @@ const Index = () => {
               hobbies={profile.hobbies}
               bio={profile.bio}
               index={index}
+              showBranchPropose={false}
+              age={profile.age}
+              branch={profile.branch}
+              purpose={profile.purpose}
             />
           ))}
         </div>

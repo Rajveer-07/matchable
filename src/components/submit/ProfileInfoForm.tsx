@@ -9,9 +9,11 @@ interface ProfileInfoFormProps {
   setName: (name: string) => void;
   bio: string;
   setBio: (bio: string) => void;
+  dob: string;
+  setDob: (dob: string) => void;
 }
 
-const ProfileInfoForm = ({ name, setName, bio, setBio }: ProfileInfoFormProps) => {
+const ProfileInfoForm = ({ name, setName, bio, setBio, dob, setDob }: ProfileInfoFormProps) => {
   return (
     <div className="grid gap-4">
       <div className="space-y-2">
@@ -21,6 +23,17 @@ const ProfileInfoForm = ({ name, setName, bio, setBio }: ProfileInfoFormProps) =
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Your name"
+          className="focus-visible:ring-offset-0 focus-visible:ring-black/20"
+        />
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="dob">Date of Birth</Label>
+        <Input
+          id="dob"
+          type="date"
+          value={dob}
+          onChange={(e) => setDob(e.target.value)}
           className="focus-visible:ring-offset-0 focus-visible:ring-black/20"
         />
       </div>
