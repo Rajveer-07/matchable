@@ -1,6 +1,9 @@
 # PREVIEW
 
-[LINK](https://rajveer-07.github.io/matchable/)
+[
+<img width="550" alt="Screenshot 2025-03-08 at 12 20 46 AM" src="https://github.com/user-attachments/assets/7e211bed-ef16-4464-aee5-b3555d1ee7a2" />
+
+](https://rajveer-07.github.io/matchable/)
 
 ---
 
@@ -18,15 +21,23 @@ The idea for Matchabel came to me one day while reflecting on the importance of 
 
 ### What Matchabel Does
 
+- **Quick Profile Setup**  
+  Jump right in by creating your profile in seconds. It’s super easy to get started!
+
 - **Find Friends with Your Hobbies**  
   Tell us what you like—maybe music, sports, or cooking—and we’ll match you with people who love it too.
+
+- **Smart Explore Section**  
+  Our AI buddy helps you find friends who love the same things you do. It’s like having a personal guide to the best connections.
+
+- **Friendship Leaderboard**  
+  See how your connections stack up and get inspired to meet more awesome people. It’s a fun way to stay active in the community!
 
 - **Super Easy to Use**  
   Matchabel is simple and fun. You won’t get confused trying to figure it out.
 
 - **Real Connections**  
   We help you meet people you can really talk to, not just say “hi” and forget.
-
 ---
 
 ### Who Made It
@@ -47,10 +58,4 @@ Have a question or idea? Email me at [admeliora007@gmail.com](mailto:admeliora00
 Matchabel can get even better with your ideas. If you know how to code, you can join in! Just fork this project and send your changes. Let’s make it awesome together.
 
 ---
-
-### Our Logo
-
-Add the Matchabel logo here to make this page look cool. Like this:
-
-<img width="550" alt="Screenshot 2025-03-08 at 12 20 46 AM" src="https://github.com/user-attachments/assets/7e211bed-ef16-4464-aee5-b3555d1ee7a2" />
 
