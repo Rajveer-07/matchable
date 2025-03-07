@@ -46,5 +46,5 @@ Matchabel can get even better with your ideas. If you know how to code, you can 
 
 Add the Matchabel logo here to make this page look cool. Like this:
 
-![Matchabel Logo](https://freeimage.host/i/3KkAd8P)  
+<a href="https://ibb.co/6R8WTzVT"><img src="https://i.ibb.co/zhF4BpjB/Screenshot-2025-03-08-at-12-20-46-AM.png" alt="Screenshot-2025-03-08-at-12-20-46-AM" border="0"></a> 
 *Caption: Matchabel—where hobbies turn into friendships.*
