@@ -1,4 +1,4 @@
-# Matchabel
+<img width="550" alt="Screenshot 2025-03-08 at 12 20 46 AM" src="https://github.com/user-attachments/assets/199146a8-0795-49a5-aa29-4c730cea5e06" /># Matchabel
 
 Hi! Welcome to **Matchabel**—a place where you can meet people who like the same things you do. Love painting, hiking, or playing games? Matchabel helps you find friends who enjoy those hobbies too. It’s all about making real connections, the easy way.
 
@@ -46,5 +46,5 @@ Matchabel can get even better with your ideas. If you know how to code, you can 
 
 Add the Matchabel logo here to make this page look cool. Like this:
 
-[LOGO](https://i.ibb.co/zhF4BpjB/Screenshot-2025-03-08-at-12-20-46-AM.png).
-*Caption: Matchabel—where hobbies turn into friendships.*
+<img width="550" alt="Screenshot 2025-03-08 at 12 20 46 AM" src="https://github.com/user-attachments/assets/7e211bed-ef16-4464-aee5-b3555d1ee7a2" />
+
