@@ -1,12 +1,12 @@
-<img width="550" alt="Screenshot 2025-03-08 at 12 20 46 AM" src="https://github.com/user-attachments/assets/199146a8-0795-49a5-aa29-4c730cea5e06" /># Matchabel
-
-Hi! Welcome to **Matchabel**—a place where you can meet people who like the same things you do. Love painting, hiking, or playing games? Matchabel helps you find friends who enjoy those hobbies too. It’s all about making real connections, the easy way.
-
----
-
 ## How It All Started
 
 The idea for Matchabel came to me one day while reflecting on the importance of hobbies in our lives. I noticed that shared interests can be the foundation of strong friendships. So, I envisioned a platform that could bring people together based on their passions and hobbies.
+
+---
+
+# Matchabel
+
+Hi! Welcome to **Matchabel**—a place where you can meet people who like the same things you do. Love painting, hiking, or playing games? Matchabel helps you find friends who enjoy those hobbies too. It’s all about making real connections, the easy way.
 
 ---
 
