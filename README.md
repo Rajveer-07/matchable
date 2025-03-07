@@ -1,8 +1,6 @@
 # PREVIEW
 
-[
-<img width="550" alt="Screenshot 2025-03-08 at 12 20 46 AM" src="https://github.com/user-attachments/assets/7e211bed-ef16-4464-aee5-b3555d1ee7a2" />
-
+[<img width="550" alt="Screenshot 2025-03-08 at 12 20 46 AM" src="https://github.com/user-attachments/assets/7e211bed-ef16-4464-aee5-b3555d1ee7a2" />
 ](https://rajveer-07.github.io/matchable/)
 
 ---
