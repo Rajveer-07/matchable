@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import HeroSection from '@/components/HeroSection';
@@ -7,50 +7,82 @@ import ProfileCard from '@/components/ProfileCard';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { ArrowRight, Heart, Search } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
-// Sample profiles data
 const featuredProfiles = [
-   {
+  {
+    id: 'profile-1',
     name: 'Pranjal',
     image: 'https://i.postimg.cc/DzbDp1QX/temp-Imagex-WHQ3-V.avif',
     hobbies: ['Poetry', 'Travel', 'Riding'],
-    bio: 'Businessman and a bike enthusiast , love poetry and tea.',
+    bio: 'Businessman (Expert in Sales) and a bike enthusiast , love poetry and tea',
     branch: 'CSDS' as const,
     purpose: 'Both' as const,
-    age: 21
+    age: 21,
+    instagramId: 'pranjal_biro',
+    likeCount: 12,
+    isLiked: false
   },
   {
+    id: 'profile-2',
     name: 'Prashant Parmar',
     image: 'https://i.postimg.cc/QxLfFRMv/temp-Imagee5-Fhxb.avif',
     hobbies: ['Gaming', 'Football', 'Travel'],
     bio: 'Sports by day, Gym enthusiast by night. Let\'s discuss Animes over coffee.',
     branch: 'CSDS' as const,
     purpose: 'Fun' as const,
-    age: 20
+    age: 20,
+    instagramId: 'pras_hanntt_',
+    likeCount: 32,
+    isLiked: false
   },
   {
+    id: 'profile-3',
     name: 'Rajveer Dangi',
     image: 'https://i.postimg.cc/mDWmkqvd/face-swap.png',
     hobbies: ['Basketball', 'Reading', 'Travel'],
     bio: 'Creative soul with a passion for colors and movement. Always planning my next trip.',
     branch: 'CSBS' as const,
     purpose: 'Both' as const,
-    age: 20
+    instagramId: 'rajveerrdangi',
+    age: 20,
+    likeCount: 47,
+    isLiked: false
   },
   {
+    id: 'profile-4',
     name: 'Michael Chen',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format',
     hobbies: ['Gaming', 'Cooking', 'Movies'],
     bio: 'Gamer and foodie. I can make a mean pasta while discussing film theory.',
     branch: 'AIML' as const,
     purpose: 'Fun' as const,
-    age: 21
+    instagramId: 'michael_chen',
+    age: 21,
+    likeCount: 18,
+    isLiked: false
   }
 ];
 
 const Index = () => {
   const controls = useAnimation();
   const isMobile = useIsMobile();
+  const { toast } = useToast();
+  const [profiles, setProfiles] = useState(featuredProfiles);
+  
+  const handleLikeUpdate = (profileId: string) => {
+    setProfiles(prevProfiles => 
+      prevProfiles.map(profile => 
+        profile.id === profileId 
+          ? { 
+              ...profile, 
+              isLiked: !profile.isLiked,
+              likeCount: profile.isLiked ? profile.likeCount - 1 : profile.likeCount + 1
+            } 
+          : profile
+      )
+    );
+  };
   
   useEffect(() => {
     controls.start({
@@ -62,7 +94,6 @@ const Index = () => {
       }
     });
     
-    // Smooth scroll to top on component mount
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
@@ -76,10 +107,8 @@ const Index = () => {
       exit={{ opacity: 0 }}
       className="page-transition-container"
     >
-      {/* Hero Section */}
       <HeroSection />
       
-      {/* Featured Matches Section */}
       <section className="py-24 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <motion.div
@@ -96,9 +125,10 @@ const Index = () => {
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {featuredProfiles.map((profile, index) => (
+          {profiles.map((profile, index) => (
             <ProfileCard
-              key={index}
+              key={profile.id}
+              id={profile.id}
               name={profile.name}
               image={profile.image}
               hobbies={profile.hobbies}
@@ -108,6 +138,10 @@ const Index = () => {
               age={profile.age}
               branch={profile.branch}
               purpose={profile.purpose}
+              instagramId={profile.instagramId}
+              likeCount={profile.likeCount}
+              isLiked={profile.isLiked}
+              onLikeUpdate={() => handleLikeUpdate(profile.id)}
             />
           ))}
         </div>
@@ -122,7 +156,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* How It Works Section */}
       <section className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -183,7 +216,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Image Grid Section */}
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -200,13 +232,11 @@ const Index = () => {
             </motion.div>
           </div>
           
-          {/* Heart-shaped image grid with continuous scrolling */}
           <ImageGrid />
         </div>
       </section>
       
-      {/* CTA Section */}
-      <section className="py-24 px-6 bg-black text-white">
+      <section className="py-24 px-6 bg-[#000000] text-white">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -220,14 +250,13 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="rounded-full px-8 py-6 bg-white text-black hover:bg-gray-100 text-md">
+              <Button asChild size="lg" className="rounded-full px-8 py-6 bg-white text-[#000000] hover:bg-gray-100 text-md">
                 <Link to="/explore">
                   <Search className="mr-2 h-5 w-5" />
                   Explore Matches
                 </Link>
               </Button>
               
-              {/* Enhanced visibility for Create Profile button */}
               <Button asChild variant="outline" size="lg" className="rounded-full px-8 py-6 border-white border-2 hover:bg-white/20 text-white text-md font-medium shadow-lg hover:shadow-xl transition-all duration-300">
                 <Link to="/submit">
                   <Heart className="mr-2 h-5 w-5 text-pink-400" />

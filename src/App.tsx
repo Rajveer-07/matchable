@@ -13,7 +13,14 @@ import About from "./pages/About";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export default () => (
   <QueryClientProvider client={queryClient}>

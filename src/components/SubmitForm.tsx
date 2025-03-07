@@ -14,6 +14,7 @@ import BranchAndPurposeSelector from './submit/BranchAndPurposeSelector';
 import HobbiesAndRoutineForm from './submit/HobbiesAndRoutineForm';
 import ImageUploader from './submit/ImageUploader';
 import SuccessMessage from './submit/SuccessMessage';
+import InstagramInput from './submit/InstagramInput';
 
 const SubmitForm = () => {
   const [name, setName] = useState('');
@@ -23,6 +24,7 @@ const SubmitForm = () => {
   const [purpose, setPurpose] = useState<'Study' | 'Fun' | 'Both'>('Study');
   const [hobbies, setHobbies] = useState('');
   const [routine, setRoutine] = useState('');
+  const [instagram, setInstagram] = useState('');
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -76,7 +78,8 @@ const SubmitForm = () => {
         purpose,
         hobbies: hobbiesArray,
         routine,
-        imageUrl: previewUrl
+        imageUrl: previewUrl,
+        instagramId: instagram || undefined
       });
       
       setIsSuccess(true);
@@ -156,6 +159,13 @@ const SubmitForm = () => {
           setHobbies={setHobbies}
           routine={routine}
           setRoutine={setRoutine}
+        />
+        
+        <Separator />
+        
+        <InstagramInput
+          instagram={instagram}
+          setInstagram={setInstagram}
         />
         
         <Separator />

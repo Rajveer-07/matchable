@@ -6,7 +6,6 @@ const About = () => {
   const controls = useAnimation();
   const [showContactForm, setShowContactForm] = useState(false);
   
-  
   // Refs for scroll animations
   const heroRef = useRef<HTMLDivElement>(null);
   const missionRef = useRef<HTMLDivElement>(null);
@@ -101,7 +100,7 @@ const About = () => {
     {
       name: "Rajveer Dangi",
       role: "Lead Developer",
-      image: "https://i.ibb.co/GQW23d5b/face-swap.png",
+      image: "https://i.postimg.cc/mDWmkqvd/face-swap.png",
       bio: "Rajveer brings technical expertise and innovation to our platform, ensuring a seamless user experience.",
       socials: [
         { icon: <Github className="h-4 w-4" />, url: "https://github.com/Rajveer-07" },
@@ -118,7 +117,7 @@ const About = () => {
       description: "Matchabel was founded with a vision to revolutionize how people connect online, focusing on authenticity and meaningful interactions."
     },
     {
-      year: "2025",
+      year: "2024",
       title: "Website Launch",
       description: "Our platform officially launched, combining innovative technology with user-centered design to create an intuitive experience."
     },
@@ -210,10 +209,10 @@ const About = () => {
             
             <motion.div variants={slideInRightVariants} className="flex flex-col justify-center order-1 md:order-2">
               <div className="inline-block bg-purple-100 text-purple-800 px-4 py-1 rounded-full text-sm font-medium mb-4">Our Mission</div>
-              <h2 className="text-3xl md:text-4xl mb-6 font-medium tracking-tight">Creating Meaningful Connections</h2>
+              <h2 className="text-3xl md:text-4xl mb-6 font-medium tracking-tight">Creating Meaningful Friendships</h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
                 At Matchabel, we believe that technology should bring people together, not isolate them. 
-                Our mission is to create a platform that facilitates authentic connections based on 
+                Our mission is to create a platform that facilitates authentic friendships based on 
                 compatibility, shared values, and mutual interests.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -239,7 +238,7 @@ const About = () => {
                     <Heart className="h-5 w-5 text-pink-600" />
                   </div>
                   <div>
-                    <h4 className="font-medium mb-1">Relationships</h4>
+                    <h4 className="font-medium mb-1">Friendships</h4>
                     <p className="text-gray-500 text-sm">Fostering authentic bonds</p>
                   </div>
                 </motion.div>
@@ -305,62 +304,95 @@ const About = () => {
           </motion.div>
         </motion.section>
 
-        {/* History Timeline */}
+        {/* History Timeline - Updated with minimalistic design */}
         <motion.section 
           ref={historyRef}
-          variants={staggerContainerVariants}
+          variants={fadeInVariants}
           initial="hidden"
           animate={historyInView ? "visible" : "hidden"}
           className="mb-24"
         >
           <div className="text-center mb-12">
-            <motion.span variants={itemVariants} className="inline-block bg-black text-white px-4 py-1 rounded-full text-sm font-medium mb-4">Our History</motion.span>
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl mb-4 font-medium tracking-tight">Our Journey</motion.h2>
-            <motion.p variants={itemVariants} className="text-gray-600 max-w-3xl mx-auto">
+            <motion.span 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-block bg-black text-white px-4 py-1 rounded-full text-sm font-medium mb-4"
+            >
+              Our History
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-3xl md:text-4xl mb-4 font-medium tracking-tight"
+            >
+              Our Journey
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-gray-600 max-w-3xl mx-auto"
+            >
               From humble beginnings to where we are today, explore the key milestones that shaped Matchabel.
             </motion.p>
           </div>
           
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gray-200 md:block hidden"></div>
-            
-            {/* Timeline events */}
-            <div className="space-y-12">
-              {historyEvents.map((event, index) => (
-                <motion.div 
-                  key={index}
-                  variants={itemVariants}
-                  className="relative"
-                >
-                  <div className={`md:flex items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                    <div className="md:w-1/2 md:px-8 mb-4 md:mb-0 flex md:justify-center">
+          <div className="max-w-3xl mx-auto">
+            {historyEvents.map((event, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.3 + (index * 0.2),
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                className="mb-10 last:mb-0"
+              >
+                <div className="flex items-start">
+                  <div className="mr-6 pt-1">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ 
+                        delay: 0.5 + (index * 0.2), 
+                        type: "spring", 
+                        stiffness: 200 
+                      }}
+                      className="h-10 w-10 rounded-full bg-black flex items-center justify-center text-white font-medium"
+                    >
+                      {index + 1}
+                    </motion.div>
+                    {index < historyEvents.length - 1 && (
                       <motion.div 
-                        whileHover={{ scale: 1.03 }}
-                        className="bg-white p-6 rounded-2xl shadow-md"
-                      >
-                        <div className="inline-block bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium mb-3">
-                          {event.year}
-                        </div>
-                        <h3 className="text-xl font-medium mb-2">{event.title}</h3>
-                        <p className="text-gray-600">{event.description}</p>
-                      </motion.div>
-                    </div>
-                    <div className={`absolute left-0 top-0 md:relative md:flex items-center justify-center md:w-16 ${index % 2 === 0 ? 'md:order-first' : ''}`}>
-                      <motion.div 
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                        className="h-16 w-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 z-10 flex items-center justify-center shadow-lg"
-                      >
-                        <Clock className="h-8 w-8 text-white" />
-                      </motion.div>
-                    </div>
-                    <div className="md:w-1/2"></div>
+                        initial={{ height: 0 }}
+                        animate={{ height: '100%' }}
+                        transition={{ 
+                          duration: 0.8, 
+                          delay: 0.7 + (index * 0.2)
+                        }}
+                        className="w-0.5 bg-gray-200 h-full mx-auto mt-2"
+                      />
+                    )}
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="bg-white p-6 rounded-xl shadow-sm flex-1"
+                  >
+                    <div className="flex items-center mb-3">
+                      <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">{event.year}</span>
+                      <div className="h-px bg-gray-200 flex-1 ml-3"></div>
+                    </div>
+                    <h3 className="text-xl font-medium mb-2">{event.title}</h3>
+                    <p className="text-gray-600">{event.description}</p>
+                  </motion.div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.section>
 
@@ -596,8 +628,8 @@ const About = () => {
               answer="We prioritize user safety through profile verification, encryption of personal data, and continuous monitoring for suspicious activity. Our community guidelines also promote respectful interactions, and we have a dedicated team handling reports and concerns promptly."
             />
             <FaqItem 
-              question="Can I use Matchabel internationally?" 
-              answer="Yes, Matchabel is available in multiple countries and supports various languages. Our global community continues to grow, connecting people across borders who share similar interests and values regardless of geographic location."
+              question="Why Matchabel ?" 
+              answer="Matchabel is designed to provide a seamless and distraction-free experience for users looking for relevant content. "
             />
           </div>
         </motion.section>

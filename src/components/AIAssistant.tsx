@@ -13,7 +13,12 @@ interface Message {
   error?: boolean;
 }
 
-const AIAssistant = () => {
+interface AIAssistantProps {
+  openCallback?: (isOpen: boolean) => void;
+  onClose?: () => void;
+}
+
+const AIAssistant = ({ openCallback, onClose }: AIAssistantProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -36,13 +41,21 @@ const AIAssistant = () => {
     }
   }, [messages]);
 
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
+
+  useEffect(() => {
+    if (openCallback) {
+      openCallback(isOpen);
+    }
+  }, [isOpen, openCallback]);
+
   const handleSendMessage = async (retry = false, retryIndex = -1, originalContent = '') => {
-    // If it's a retry, use the original content, otherwise use the input
     const messageContent = retry ? originalContent : input;
     
     if (!messageContent.trim() && !retry) return;
     
-    // If it's not a retry, add user message
     if (!retry) {
       const userMessage: Message = {
         role: 'user',
@@ -58,7 +71,6 @@ const AIAssistant = () => {
     
     try {
       if (!apiKey) {
-        // If API key is not provided, use simulated responses
         setTimeout(() => {
           const simulatedResponse = getSimulatedResponse(messageContent);
           
@@ -69,7 +81,6 @@ const AIAssistant = () => {
           };
           
           if (retry && retryIndex >= 0) {
-            // Replace the error message with the new response
             setMessages(prev => {
               const updatedMessages = [...prev];
               updatedMessages[retryIndex] = assistantMessage;
@@ -85,13 +96,11 @@ const AIAssistant = () => {
         return;
       }
       
-      // Create the message history for Gemini API
       const geminiMessages = [
         { role: "user", parts: [{ text: "You are a helpful, friendly matchmaking assistant. Your primary goal is to help users find compatible matches based on their hobbies, interests, and preferences. Provide insights about how shared activities can strengthen relationships. Be concise, warm, and encouraging in your responses." }] },
         { role: "model", parts: [{ text: "I understand my role. I'll be a helpful matchmaking assistant focused on connecting people based on shared interests and hobbies. I'll be concise, warm, and encouraging in my responses." }] }
       ];
       
-      // Add previous messages
       messages.forEach(msg => {
         geminiMessages.push({
           role: msg.role === "user" ? "user" : "model",
@@ -99,13 +108,11 @@ const AIAssistant = () => {
         });
       });
       
-      // Add the current message
       geminiMessages.push({
         role: "user",
         parts: [{ text: messageContent }]
       });
       
-      // Make the API call to Gemini API
       const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent', {
         method: 'POST',
         headers: {
@@ -143,7 +150,6 @@ const AIAssistant = () => {
       };
       
       if (retry && retryIndex >= 0) {
-        // Replace the error message with the new response
         setMessages(prev => {
           const updatedMessages = [...prev];
           updatedMessages[retryIndex] = assistantMessage;
@@ -161,7 +167,6 @@ const AIAssistant = () => {
         variant: "destructive"
       });
       
-      // Add a fallback message to not leave the user hanging
       const fallbackMessage: Message = {
         role: 'assistant',
         content: "I'm sorry, I encountered an error while processing your request. Please try again later.",
@@ -187,7 +192,6 @@ const AIAssistant = () => {
     }
   };
 
-  // This is for demonstration - would be replaced by actual AI responses
   const getSimulatedResponse = (userInput: string): string => {
     const input = userInput.toLowerCase();
     
@@ -210,32 +214,22 @@ const AIAssistant = () => {
     handleSendMessage(true, index, originalContent);
   };
 
+  const handleClose = () => {
+    setIsOpen(false);
+    if (openCallback) {
+      openCallback(false);
+    }
+    if (onClose) {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
+
   return (
     <>
-      {/* AI Assistant Button */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-gradient-to-br from-black to-gray-800 text-white rounded-full p-4 shadow-lg z-50 hover-lift"
-        style={{ 
-          boxShadow: "0 10px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.2)"
-        }}
-      >
-        <motion.div
-          animate={{ rotate: [0, 10, 0, -10, 0] }}
-          transition={{ 
-            repeat: Infinity, 
-            repeatType: "mirror",
-            duration: 5,
-            ease: "easeInOut"
-          }}
-        >
-          <Heart className="h-6 w-6 text-pink-400" />
-        </motion.div>
-      </motion.button>
-      
-      {/* AI Assistant Dialog */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -265,11 +259,18 @@ const AIAssistant = () => {
                   </CardTitle>
                 </div>
                 <div className="flex items-center space-x-2">
-                  
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => setShowSettings(!showSettings)}
+                    className="h-8 w-8 rounded-full hover:bg-gray-200 transition-colors"
+                  >
+                    <Settings className="h-4 w-4 text-gray-600" />
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    onClick={handleClose}
                     className="h-8 w-8 rounded-full hover:bg-gray-200 transition-colors"
                   >
                     <X className="h-4 w-4 text-gray-600" />
@@ -359,14 +360,12 @@ const AIAssistant = () => {
                             })}
                           </span>
                           
-                          {/* Add retry button for error messages */}
                           {message.error && (
                             <Button
                               variant="ghost"
                               size="sm"
                               className="h-6 p-0 px-2 text-xs font-medium text-red-600 hover:bg-red-50 hover:text-red-700 rounded-full"
                               onClick={() => {
-                                // Find the preceding user message to retry
                                 let userMessageIndex = index - 1;
                                 while (userMessageIndex >= 0 && messages[userMessageIndex].role !== 'user') {
                                   userMessageIndex--;

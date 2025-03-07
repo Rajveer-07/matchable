@@ -4,10 +4,13 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Heart, MessageCircle } from 'lucide-react';
+import { Heart, Instagram, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
 import { motion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { likeProfile } from '@/services/databaseService';
+import { useToast } from '@/hooks/use-toast';
 
 // Helper function to calculate age from DOB
 const calculateAge = (dob: string): number => {
@@ -23,6 +26,7 @@ const calculateAge = (dob: string): number => {
 
 // Define the props interface
 interface ProfileCardProps {
+  id: string;
   name: string;
   image: string;
   hobbies: string[];
@@ -34,10 +38,15 @@ interface ProfileCardProps {
   dob?: string;
   branch?: 'AIML' | 'CSDS' | 'CSBS';
   purpose?: 'Study' | 'Fun' | 'Both';
-  age?: number; // Added this property to match what's being passed in Index.tsx
+  age?: number;
+  instagramId?: string;
+  likeCount?: number;
+  isLiked?: boolean;
+  onLikeUpdate?: () => void;
 }
 
 const ProfileCard = ({
+  id,
   name,
   image,
   hobbies,
@@ -49,8 +58,15 @@ const ProfileCard = ({
   dob,
   branch,
   purpose,
-  age, // Added to destructuring
+  age,
+  instagramId,
+  likeCount = 0,
+  isLiked = false,
+  onLikeUpdate,
 }: ProfileCardProps) => {
+  const isMobile = useIsMobile();
+  const { toast } = useToast();
+  
   // Handle fallback image if the provided image fails to load
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format';
@@ -58,6 +74,35 @@ const ProfileCard = ({
 
   // Calculate age if DOB is provided and age is not directly passed
   const displayAge = age !== undefined ? age : (dob ? calculateAge(dob) : undefined);
+
+  const handleInstagramClick = () => {
+    if (instagramId) {
+      window.open(`https://instagram.com/${instagramId}`, '_blank');
+    }
+  };
+
+  const handleLikeClick = async () => {
+    try {
+      await likeProfile(id);
+      toast({
+        title: isLiked ? "Removed like" : "Profile liked",
+        description: isLiked 
+          ? `You've removed your like from ${name}'s profile` 
+          : `You've liked ${name}'s profile`,
+      });
+      
+      // Call the callback to refresh data if provided
+      if (onLikeUpdate) {
+        onLikeUpdate();
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem updating your like",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <motion.div
@@ -93,6 +138,12 @@ const ProfileCard = ({
             <div>
               <h3 className="text-xl font-bold text-gray-800">{name}</h3>
               {displayAge !== undefined && <p className="text-gray-500">{displayAge} years old</p>}
+            </div>
+            
+            {/* Display like count */}
+            <div className="flex items-center gap-1">
+              <Heart className="h-4 w-4 text-pink-500" fill={isLiked ? "#ec4899" : "none"} />
+              <span className="text-sm font-medium">{likeCount}</span>
             </div>
           </div>
           
@@ -152,15 +203,27 @@ const ProfileCard = ({
           </div>
         </CardContent>
 
-        <CardFooter className="p-4 pt-0 flex justify-between border-t border-gray-100 mt-2">
-          <button className="text-gray-600 hover:text-pink-500 transition-colors duration-300 flex items-center gap-1">
-            <Heart className="h-4 w-4" />
-            <span className="text-xs">Connect</span>
+        <CardFooter className="p-5 pt-0 flex justify-between">
+          <button 
+            onClick={handleLikeClick}
+            className={cn(
+              "transition-colors duration-300 flex items-center gap-1 text-sm",
+              isLiked ? "text-pink-600 hover:text-pink-700" : "text-gray-800 hover:text-pink-600"
+            )}
+          >
+            <Heart className="h-4 w-4" fill={isLiked ? "#ec4899" : "none"} />
+            <span>{isLiked ? "Liked" : "Like"}</span>
           </button>
-          <button className="text-gray-600 hover:text-blue-500 transition-colors duration-300 flex items-center gap-1">
-            <MessageCircle className="h-4 w-4" />
-            <span className="text-xs">Message</span>
-          </button>
+          
+          {instagramId && (
+            <button 
+              onClick={handleInstagramClick} 
+              className="text-gray-800 hover:text-pink-600 transition-colors duration-300 flex items-center gap-1 text-sm cursor-pointer"
+            >
+              <Instagram className="h-4 w-4" />
+              <span>Instagram</span>
+            </button>
+          )}
         </CardFooter>
       </Card>
     </motion.div>

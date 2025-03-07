@@ -9,19 +9,18 @@ const sampleImages = [
   'https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600&auto=format',
   'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=600&auto=format',
   'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format',
-  'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&auto=format',
+  'https://i.postimg.cc/mDWmkqvd/face-swap.png',
   'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format',
-  'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&auto=format',
+  'https://i.postimg.cc/DzbDp1QX/temp-Imagex-WHQ3-V.avif',
   'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format',
-  'https://images.unsplash.com/photo-1522556189639-b150ed9c4330?w=600&auto=format',
   'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=600&auto=format',
+  'https://i.postimg.cc/QxLfFRMv/temp-Imagee5-Fhxb.avif',
   'https://images.unsplash.com/photo-1492681290082-e932832941e6?w=600&auto=format',
   'https://images.unsplash.com/photo-1542596768-5d1d21f1cf98?w=600&auto=format',
   'https://images.unsplash.com/photo-1542206395-9feb3bbe3d9e?w=600&auto=format',
   'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format',
   'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format'
 ];
-
 // Arrangement of images in heart shape
 const heartGrid = [
   { row: 1, col: 2 }, { row: 1, col: 4 },

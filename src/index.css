@@ -84,7 +84,7 @@ button[aria-label="Settings"] {
   }
 
   .glass-dark {
-    @apply bg-black/10 backdrop-blur-lg border border-black/10;
+    @apply bg-[#000000]/10 backdrop-blur-lg border border-[#000000]/10;
   }
 
   .glass-card {
@@ -144,6 +144,43 @@ button[aria-label="Settings"] {
 
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-primary/70;
+  }
+  
+  /* Typing animation dots */
+  .typing-animation-dot {
+    @apply w-2 h-2 bg-gray-400 rounded-full;
+    animation: typing 1.5s infinite ease-in-out;
+  }
+
+  .typing-animation-dot:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  .typing-animation-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-animation-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes typing {
+    0%, 60%, 100% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(-5px);
+    }
+  }
+
+  /* Floating button glow effect */
+  .floating-btn-glow {
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .floating-btn-glow:hover {
+    box-shadow: 0 0 25px rgba(236, 72, 153, 0.7);
   }
 }
 

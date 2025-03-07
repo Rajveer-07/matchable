@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import HobbyForm from '@/components/HobbyForm';
 import ProfileCard from '@/components/ProfileCard';
@@ -11,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getAllProfiles, UserProfile } from '@/services/databaseService';
 import { analyzeCompatibility, AIAnalysisResult, getPersonalizedInsights } from '@/services/aiService';
 import { useToast } from '@/hooks/use-toast';
-import AIAssistant from '@/components/AIAssistant';
+import FloatingMenu from '@/components/FloatingMenu';
 
 const Explore = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,27 +26,38 @@ const Explore = () => {
   } | null>(null);
   const { toast } = useToast();
 
+  const fetchProfiles = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const data = await getAllProfiles();
+      setProfiles(data);
+      
+      if (hasSearched && analysisResult) {
+        const updatedMatchedProfiles = analysisResult.matches
+          .filter(match => match.score > 0)
+          .map(match => {
+            const profile = data.find(p => p.id === match.profileId);
+            return profile ? profile : null;
+          })
+          .filter((profile): profile is UserProfile => profile !== null);
+        
+        setMatchedProfiles(updatedMatchedProfiles);
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to load profiles. Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }, [toast, hasSearched, analysisResult]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-    const fetchProfiles = async () => {
-      setIsLoading(true);
-      try {
-        const data = await getAllProfiles();
-        setProfiles(data);
-      } catch (error) {
-        toast({
-          title: "Error",
-          description: "Failed to load profiles. Please try again later.",
-          variant: "destructive"
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
     fetchProfiles();
-  }, [toast]);
+  }, [fetchProfiles]);
 
   const handleSearch = async (hobbies: string[], keywords: string[]) => {
     if (hobbies.length === 0) {
@@ -103,6 +114,10 @@ const Explore = () => {
     }
   };
 
+  const handleLikeUpdate = () => {
+    fetchProfiles();
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -110,7 +125,7 @@ const Explore = () => {
       exit={{ opacity: 0 }}
       className="min-h-screen pt-24 pb-12"
     >
-      <AIAssistant />
+      <FloatingMenu />
       
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
@@ -225,6 +240,7 @@ const Explore = () => {
                               transition={{ duration: 0.4, delay: index * 0.1 }}
                             >
                               <ProfileCard
+                                id={profile.id}
                                 name={profile.name}
                                 image={profile.imageUrl}
                                 hobbies={profile.hobbies}
@@ -234,8 +250,12 @@ const Explore = () => {
                                 matchReason={matchDetails?.matchReason || ''}
                                 showBranchPropose={false}
                                 dob={profile.dob}
-                                branch={profile.branch as 'AIML' | 'CSDS' | 'CSBS'} 
-                                purpose={profile.purpose as 'Study' | 'Fun' | 'Both'}
+                                branch={profile.branch}
+                                purpose={profile.purpose}
+                                instagramId={profile.instagramId}
+                                likeCount={profile.likeCount}
+                                isLiked={profile.isLiked}
+                                onLikeUpdate={handleLikeUpdate}
                               />
                             </motion.div>
                           );

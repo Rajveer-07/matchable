@@ -97,7 +97,7 @@ const Navbar = () => {
         )}
       >
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center rounded-full bg-black/90 text-white px-7 py-4 space-x-10">
+        <nav className="hidden md:flex items-center rounded-full bg-[#000000]/90 text-white px-7 py-4 space-x-10">
           <motion.span
             className="text-white font-playfair text-xl"
             variants={itemVariants}
@@ -126,17 +126,17 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         <div className="flex justify-between items-center w-full md:hidden px-4">
-          <Link to="/" className="text-black font-playfair text-lg z-50">
+          <Link to="/" className="text-[#000000] font-playfair text-lg z-50">
             Matchabel
           </Link>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="z-50 p-2 bg-black/10 backdrop-blur-md rounded-full"
+            className="z-50 p-2 bg-[#000000]/10 backdrop-blur-md rounded-full"
           >
             {mobileMenuOpen ? (
-              <X className="h-6 w-6 text-black" />
+              <X className="h-6 w-6 text-[#000000]" />
             ) : (
-              <Menu className="h-6 w-6 text-black" />
+              <Menu className="h-6 w-6 text-[#000000]" />
             )}
           </button>
         </div>
@@ -160,7 +160,7 @@ const Navbar = () => {
                   className={cn(
                     "flex flex-col items-center p-4 rounded-xl transition-all duration-300",
                     location.pathname === item.path
-                      ? "bg-black text-white font-medium scale-110"
+                      ? "bg-[#000000] text-white font-medium scale-110"
                       : "text-gray-600 hover:bg-gray-100"
                   )}
                 >
@@ -179,20 +179,20 @@ const Navbar = () => {
               <div className="flex space-x-3 mb-2">
                 <Link to="/explore" className="bg-purple-100 p-3 rounded-full hover:bg-purple-200 transition-colors duration-300 flex items-center justify-center relative group">
                   <Compass className="h-5 w-5 text-purple-700" />
-                  <span className="absolute -top-8 bg-black text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Explore Matches</span>
+                  <span className="absolute -top-8 bg-[#000000] text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Explore Matches</span>
                 </Link>
                 
-                <button 
-                  onClick={handleFeedbackClick} 
+                <a 
+                  href="mailto:dangirajveer33@gmail.com?subject=Matchabel%20Feedback"
                   className="bg-blue-100 p-3 rounded-full hover:bg-blue-200 transition-colors duration-300 flex items-center justify-center relative group"
                 >
                   <Mail className="h-5 w-5 text-blue-700" />
-                  <span className="absolute -top-8 bg-black text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Send Feedback</span>
-                </button>
+                  <span className="absolute -top-8 bg-[#000000] text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Send Email Feedback</span>
+                </a>
                 
                 <Link to="/submit" className="bg-green-100 p-3 rounded-full hover:bg-green-200 transition-colors duration-300 flex items-center justify-center relative group">
                   <FileEdit className="h-5 w-5 text-green-700" />
-                  <span className="absolute -top-8 bg-black text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Submit Content</span>
+                  <span className="absolute -top-8 bg-[#000000] text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Submit Content</span>
                 </Link>
               </div>
               <p className="text-xs text-gray-500">Quick Actions</p>
